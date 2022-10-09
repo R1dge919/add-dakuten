@@ -1,0 +1,84 @@
+{
+  "name": "add-dakuten",
+  "displayName": "Add-Dakuten",
+  "description": "濁点を付与する",
+  "version": "0.0.1",
+  "publisher": "RR1dge",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:add-dakuten.converter"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "add-dakuten.converter",
+        "title": "濁点の付与／除去",
+        "icon": {
+          "light": "./img/logo_black.svg",
+          "dark": "./img/logo_white.svg"
+        }
+      }
+    ],
+    "menus":{
+      "editor/title": [
+        {
+          "when": "editorHasSelection",
+          "command": "add-dakuten.converter",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "add-dakuten.converter",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "濁点付与",
+        "properties": {
+          "add-dakuten.selector": {
+            "type": "string",
+            "default": "\u3099",
+            "description": "濁点の種類を選択（デフォルト：結合文字）",
+            "enum": ["\u309B", "\uFF9E", "\u3099"],
+            "enumItemLabels": ["全角濁点（U+309B）", "半角濁点（U+FF9E）", "結合文字（U+3099）"]
+          },
+          "add-dakuten.cursor":{
+            "type": "boolean",
+            "default": true,
+            "description": "選択範囲の変換後、カーソルを選択範囲の末尾に移動して、選択を解除する"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.72.0",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "eslint": "^8.24.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.8.4",
+    "@vscode/test-electron": "^2.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/R1dge919/add-dakuten"
+  }
+}
