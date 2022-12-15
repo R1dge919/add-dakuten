@@ -14,6 +14,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.4]
 - 機能変更なし
     - Webブラウザ版に対応？　テストのため更新
-## [0.0.5] 
+## [0.1.0] 
 - 機能変更なし
     - TypeScript版で作り直し

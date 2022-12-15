@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// ここに配置されたコードは、コマンドが実行されるたびに実行される
 
-		let editor = vscode.window.activeTextEditor; // アクティブエディタの情報を取得
+		const editor = vscode.window.activeTextEditor; // アクティブエディタの情報を取得
 		if(typeof(editor)!='undefined'){
 			let text = editor.document.getText(editor.selection); // 選択範囲の文字列を取得
 			let replace_str="" // 選択文字列に濁点付与した文字列を格納（選択文字列と置換するモノ）
