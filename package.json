@@ -3,10 +3,10 @@
   "displayName": "Add-Dakuten",
   "description": "濁点を付与する",
   "icon": "img/icon.png",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "publisher": "RR1dge",
   "engines": {
-    "vscode": "^1.72.0"
+    "vscode": "^1.74.0"
   },
   "categories": [
     "Other"
@@ -14,7 +14,8 @@
   "activationEvents": [
     "onCommand:add-dakuten.converter"
   ],
-  "main": "./extension.js",
+  "main": "./dist/web/extension.js",
+  "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
       {
@@ -26,7 +27,7 @@
         }
       }
     ],
-    "menus":{
+    "menus": {
       "editor/title": [
         {
           "when": "editorHasSelection",
@@ -48,12 +49,20 @@
         "properties": {
           "add-dakuten.selector": {
             "type": "string",
-            "default": "\u3099",
+            "default": "゙",
             "description": "濁点の種類を選択（デフォルト：結合文字）",
-            "enum": ["\u309B", "\uFF9E", "\u3099"],
-            "enumItemLabels": ["全角濁点（U+309B）", "半角濁点（U+FF9E）", "結合文字（U+3099）"]
+            "enum": [
+              "゛",
+              "ﾞ",
+              "゙"
+            ],
+            "enumItemLabels": [
+              "全角濁点（U+309B）",
+              "半角濁点（U+FF9E）",
+              "結合文字（U+3099）"
+            ]
           },
-          "add-dakuten.cursor":{
+          "add-dakuten.cursor": {
             "type": "boolean",
             "default": true,
             "description": "選択範囲の変換後、カーソルを選択範囲の末尾に移動して、選択を解除する"
@@ -63,23 +72,29 @@
     ]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "node ./test/runTest.js"
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest": "npm run compile-web",
+    "vscode:prepublish": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts",
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "16.x",
-    "eslint": "^8.24.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
-    "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.1.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/R1dge919/add-dakuten"
+    "@types/vscode": "^1.74.0",
+    "@types/mocha": "^10.0.1",
+    "eslint": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3",
+    "@vscode/test-web": "^0.0.33",
+    "ts-loader": "^9.4.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
+    "@types/webpack-env": "^1.18.0",
+    "assert": "^2.0.0",
+    "process": "^0.11.10"
   }
 }
