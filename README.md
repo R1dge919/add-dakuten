@@ -1,65 +1,49 @@
-# add-dakuten README
+# add-dakuten（濁点付与）
 
-This is the README for your extension "add-dakuten". After writing up a brief description, we recommend including the following sections.
+- VSCodeで、選択された文字列に濁点を付与する拡張機能
+    - 「え」→「え゙」みたいな、本来濁点が付かない文字に付与することを想定
 
-## Features
+## 機能
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **選択文字列に対し、設定で選択された濁点を付与**
+    - 実行方法
+        - コマンドパレットから「濁点の付与／除去」を選択
+            - デフォルトではショートカットキーを設定していません
+        - 文字列選択時、右クリックから「濁点の付与／除去」を選択
+        - 文字列選択時、右上に出るロゴをクリック
+- **文字列内に既に濁点が存在する場合、文字列内の濁点を除去**
+    - 二重に濁点が付与されてしまうことを防ぐ
 
-For example if there is an image subfolder under your extension project workspace:
+## 設定
 
-\!\[feature X\]\(images/feature-x.png\)
+- `add-dakuten.selector`
+    - 濁点の種類を選択
+        - 全角濁点（U+309B）
+        - 半角濁点（U+FF9E）
+        - 結合文字（U+3099）デフォルト
+- `add-dakuten.cursor`
+    - 選択文字列の変換後、選択を解除して、選択範囲の末尾にカーソルを動かす（デフォルト有効）
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 既知の不具合（？）
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- 半濁音「゜」には非対応
+    - あまり見かけないので、不要かと思って実装せず
+    - 簡単に実装できるため、要望があれば実装します
+- コマンドを実行する度にユーザー設定を参照している
+    - 設定をよく変える人からすれば、むしろ利点かも
+        - （設定変更の度にテキストエディタを再起動しなくて済む）
+    - こまめに設定を弄らない人からすれば無駄な処理
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+### 0.0.1
+リリース
+### 0.0.2
+ロゴ画像を追加
+### 0.0.3
+- README誤字修正
+### 0.0.4
+- 機能変更なし
+    - Webブラウザ版に対応？　テストのため更新
+### 0.0.5 
+- 機能変更なし
+    - TypeScript版で作り直し
