@@ -3,7 +3,7 @@
   "displayName": "Add-Dakuten",
   "description": "濁点を付与する",
   "icon": "img/icon.png",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "publisher": "RR1dge",
   "engines": {
     "vscode": "^1.74.0"
